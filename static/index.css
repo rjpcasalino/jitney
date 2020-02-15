@@ -1,0 +1,106 @@
+body {
+	cursor: pointer;
+	background-color: #f2eecb;
+	overflow: auto;
+	max-width: 1200px;
+	margin: 0 auto;
+	line-height: 1;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 5px;
+	max-width: 1200px;
+	margin: 0;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.mast-head {
+	grid-column: 1/5;
+	grid-row: 1;
+	color: black;
+	padding: 10px;
+	text-shadow: 2px 2px white;
+	text-align: center;
+}
+
+.time {
+	display: grid;
+	justify-content: left;
+	font-size: 12px;
+}
+
+#today {
+	display: grid;
+	justify-content: right;
+	font-size: 12px;
+}
+
+.sections {
+	display: block;
+	color: black;
+	border-top: 1px solid black;
+	border-bottom: double black;
+}
+
+li {
+	display: inline-block;
+	padding: 3px;
+}
+
+.lead-story {
+	grid-column: 1/4;
+	grid-row: 3;
+	border-right: 0.5px solid black;
+	margin: 10px;
+	padding: 5px;
+	color: black;
+	text-shadow: 2px 2px white;
+}
+
+.adjacent {
+	grid-column: 4;
+	grid-row: 3;
+	padding: 5px;
+	border-bottom: 2px solid black;
+}
+
+.lower-right {
+	color: black;
+	grid-column: 4;
+	grid-row: 4;
+	padding: 10px;
+	border-left: 1px solid black;
+	text-shadow: 2px 2px white;
+}
+
+.lower-left {
+	color: black;
+	grid-column: 1/2;
+	grid-row: 4;
+	padding: 2px;
+}
+
+.lower-left > button {
+	color: blue;
+	border-radius: 100px;
+}
+
+button:hover {
+	background-color: none;
+}
+
+#submit_btn {
+	color: blue;
+	border-radius: 100px;
+	background-color: aliceblue;
+	font-weight: bolder;
+}
+
+#sig {
+	text-decoration: wavy;
+	color: blue;
+	text-decoration-line: underline;
+}
+
