@@ -1,0 +1,32 @@
+    		<div class="mast-head">
+			<small>English<span>&MediumSpace;</span>Español</small>
+			<h1>The Jitney International Times</h1>
+			<div class="time">
+				<time>{{time}}</time> 
+			</div>
+			<div class="price">
+				<small><em>Always & Forever</em> 5&cent;</small>
+			</div>
+			<div class="sections">
+				<ul style="list-style:none; padding:10px;">
+					<li>World</li>
+					<li>U.S.</li>
+					<li>Politics</li>
+					<li>Opinion</li>
+					<li>Tech</li>
+					<li>Sports</li>
+					<li>Arts</li>
+					<li>Books</li>
+					<li>Travel</li>
+				</ul>
+			</div>
+			{% with messages = get_flashed_messages() %}
+  				{% if messages %}
+    					<ul class="flashes">
+    					{% for message in messages %}
+      						<li>{{ message }}</li>
+    					{% endfor %}
+    					</ul>
+  				{% endif %}
+			{% endwith %}
+		</div>
