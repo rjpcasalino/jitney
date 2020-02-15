@@ -10,10 +10,23 @@ body {
 .wrapper {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 5px;
 	max-width: 1200px;
-	margin: 0;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	/*grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));*/
+}
+
+.menu {
+	grid-column: 4;
+	grid-row: 1;
+	margin: 0 auto;
+}
+
+.menu > #login {
+	border-radius: 0;
+	background-color: #007bff;
+	border-color: #007bff;
+	color: #fff;
+	font-size: 13px;
+	margin: 2px;
 }
 
 .mast-head {
@@ -21,8 +34,25 @@ body {
 	grid-row: 1;
 	color: black;
 	padding: 10px;
-	text-shadow: 2px 2px white;
 	text-align: center;
+}
+
+.mast-head li {
+	display: inline-block;
+	padding: 3px;
+}
+
+.mast-head li:after {
+	content: '';
+	width: 0px;
+	height: 1px;
+	display: block;
+	background: black;
+	transition: 300ms;
+}
+
+.mast-head li:hover:after {
+  width: 100%;
 }
 
 .time {
@@ -31,12 +61,11 @@ body {
 	font-size: 12px;
 }
 
-#today {
+.price {
 	display: grid;
 	justify-content: right;
 	font-size: 12px;
 }
-
 .sections {
 	display: block;
 	color: black;
@@ -44,63 +73,62 @@ body {
 	border-bottom: double black;
 }
 
-li {
-	display: inline-block;
-	padding: 3px;
-}
-
-.lead-story {
+.main-section {
 	grid-column: 1/4;
 	grid-row: 3;
-	border-right: 0.5px solid black;
-	margin: 10px;
+	border-right: 1px solid black;
 	padding: 5px;
 	color: black;
-	text-shadow: 2px 2px white;
 }
 
-.adjacent {
+.main-adjacent {
 	grid-column: 4;
 	grid-row: 3;
 	padding: 5px;
-	border-bottom: 2px solid black;
 }
 
-.lower-right {
-	color: black;
+.mid-section {
+	grid-column: 1/4;
+	grid-row: 4;
+	padding: 5px;
+	border-right: 1px solid black;
+	font-size: 15px;
+}
+
+.mid-adjacent {
 	grid-column: 4;
 	grid-row: 4;
-	padding: 10px;
-	border-left: 1px solid black;
-	text-shadow: 2px 2px white;
+	padding: 5px;
+	font-size: 15px;
 }
 
-.lower-left {
+.lower1 {
+	border-top: 2px solid black;
 	color: black;
-	grid-column: 1/2;
-	grid-row: 4;
-	padding: 2px;
+	margin: 10px;
+	width: 34.5%;
 }
 
-.lower-left > button {
-	color: blue;
-	border-radius: 100px;
+.lower2 {
+	border-top: 2px solid black;
+	color: black;
+	margin: 10px;
+	width: 34.5%;
 }
 
-button:hover {
-	background-color: none;
+.footer {
+	padding: 11px;
+	border-top: 1px solid black;
+	text-align: end;
 }
 
-#submit_btn {
-	color: blue;
-	border-radius: 100px;
-	background-color: aliceblue;
-	font-weight: bolder;
+#today {
+	display: grid;
+	justify-content: right;
+	font-size: 12px;
 }
 
-#sig {
-	text-decoration: wavy;
-	color: blue;
-	text-decoration-line: underline;
+#container {
+  display: flex;
+  justify-content: space-between; 
 }
-

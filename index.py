@@ -1,19 +1,22 @@
-from flask import Flask, request, after_this_request, make_response, render_template
+from flask import Flask, request, after_this_request, make_response, render_template, flash, redirect, url_for
+import time
 app = Flask(__name__)
+## TODO: env var
+app.secret_key = b'somethingBASAazz/1a!!'
 
 def handle_account_signup(e):
     res = 'hello %s' %(e)
     return res
 
-def handle_ask_jitney(n, f, q):
-     """
-     (name, from, question)
-     jitney needs to take the user question
-     and check 1) that user is allowed post 
-     because they are registered. 2) update
-     the grid with the question. 3) add 
-     question to sql lite db for easy access?
-     """
+def handle_login():
+    error = None;
+    if request.method == 'POST':
+        if request.form['email'] == 'admin@mail.com':
+            flash('You were successfully logged in!')
+            return redirect(url_for('index'))
+        else:
+            flash('ERROR', error)
+            return redirect(url_for('index'))
 
 @app.before_request
 def detect_user_language():
@@ -35,8 +38,6 @@ def index():
     browser = request.user_agent.browser
 
     if request.method == 'POST':
-        if request.form['email'] == 'ryan@boringtranquility.io':
-            return handle_account_signup(request.form['email'])
-        return 'Hi, Stranger!'
+        return handle_login()
     else:
-        return render_template('index.html', browser=browser)
+        return render_template('index.html', browser=browser, time=time.ctime())
