@@ -11,6 +11,5 @@ CREATE TABLE IF NOT EXISTS stories (
 	content TEXT NOT NULL
 );
 
-
 INSERT INTO users VALUES (NULL, "admin@mail.com", "pass");
-INSERT INTO stories VALUES (NULL, "Ford to City: Drop Dead", "President Ford tells NYC to shove it", "Blah")
+INSERT INTO stories VALUES (NULL, "Ford to City: Drop Dead", "President Ford tells NYC to shove it", "Blah");
