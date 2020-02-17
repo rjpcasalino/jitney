@@ -113,8 +113,9 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop('email', None)
+    flask_login.logout_user()
     return 'logged out!'
+
 @app.route('/account')
 @flask_login.login_required
 def account():
