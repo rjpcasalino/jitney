@@ -3,11 +3,28 @@ import time
 import sqlite3
 import bcrypt
 from flask import Flask, request, after_this_request, make_response, render_template, flash, redirect, url_for, g, session
+import flask_login
 
 app = Flask(__name__)
 
 app.secret_key = os.environ['APP_KEY']
 DATABASE = os.environ['JITNEY_DB']
+
+login_manager = flask_login.LoginManager()
+
+login_manager.init_app(app)
+
+class User(flask_login.UserMixin):
+    pass
+
+@login_manager.user_loader
+def user_loader(email):
+    user = query_db('SELECT email FROM users WHERE email = ?', 
+        [email], one=True)
+    user = User()
+    user.id = email
+    return user
+
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -30,10 +47,11 @@ def query_db(query, args=(), one=False, insert=False):
     return (rv[0] if rv else None) if one else rv
 
 def handle_signup():
-    ## insert user into users
-    ## with hashed password
-    ## 
-    res = query_db('INSERT INTO users (email, password) VALUES(?, ?)', ['ryan', 'test'], insert=True)
+    if request.form['email']:
+        hashed = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+        res = query_db('INSERT INTO users (email, password) VALUES(?, ?)', 
+            [request.form['email'], hashed], 
+            insert=True)
     return 'Check logs'
 
 def handle_login():
@@ -42,10 +60,13 @@ def handle_login():
         [request.form['email']], one=True)
     if user is None:
         flash('Incorrect email or password!', error);
-    elif request.form['password'] == user[2]:
-        flash('You were successfully logged in!')
-        session['email'] = request.form['email']
         return redirect(url_for('index'))
+    elif bcrypt.checkpw(request.form['password'].encode('utf-8'), user[2]):
+        flash('You were successfully logged in!')
+        user = User()
+        user.id = request.form['email']
+        flask_login.login_user(user)
+        return redirect(url_for('account'))
     else:
         flash('Incorrect email or password!', error)
         return redirect(url_for('index'))
@@ -94,3 +115,7 @@ def login():
 def logout():
     session.pop('email', None)
     return 'logged out!'
+@app.route('/account')
+@flask_login.login_required
+def account():
+    return 'Logged in as ' + flask_login.current_user.id
