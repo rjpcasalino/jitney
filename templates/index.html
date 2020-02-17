@@ -1,7 +1,12 @@
 {% include 'partials/head.html' %}    
 <body>
 	<div class="menu">
-		<button id="login">Log In</button>
+		{% if email %}
+			<a href="/account" id="login">{{email}}</a>
+		{% else %}
+			<a href="/login" id="login">Log In</a>
+		{% endif %}
+			
 	</div>
 	<div class="wrapper">
 			
@@ -21,7 +26,6 @@
 	<div class="main-adjacent">
 		<h1>Hitler Dead!</h1>
 		<h2>Found in bunker</h2>
-		<img alt="Hitler portrait crop.jpg" src="//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hitler_portrait_crop.jpg/220px-Hitler_portrait_crop.jpg" decoding="async" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hitler_portrait_crop.jpg/330px-Hitler_portrait_crop.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/e/e1/Hitler_portrait_crop.jpg 2x" width="100%" height="auto">
 		<ul>
 			<li>The madman is dead!</li>
 			<li>Five cheers for the boys that did him in!</li>
