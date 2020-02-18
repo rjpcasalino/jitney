@@ -7,11 +7,9 @@ import bcrypt
 import flask_login
 
 from jitney.db import get_db, query_db
+from .user import User
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-
-class User(flask_login.UserMixin):
-    pass
 
 def handle_signup():
     if request.form['email']:
