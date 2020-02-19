@@ -3,8 +3,68 @@
 	{% block content %}
 	<div class="account">
 		<h1>Account</h1>
-		<p>Hello:{{ current_user.ua() }}</p>
-		<a href="/auth/logout">Logout</a>
+		<p>User-Agent: {{ current_user.ua() }}</p>
+		<form>
+			<label>Email</label>
+			<br>
+			<input type="email" value="{{ current_user.id }}"/>
+			<br>
+			<label>Bio</label>
+			<br>
+			<textarea name="bio" rows="5" cols="50%">
+				{% if current_user.bio %}
+					{{ bio }}
+				{% else %}
+					Type!
+				{% endif %}
+			</textarea>
+			<br>
+			<button>Save</button>
+		</form>
+
+		<form>
+  			<fieldset>
+    				<legend>Choose a section</legend>
+
+    				<input type="radio" id="world" name="section">
+    				<label for="world">World</label>
+				<br/>
+				<input type="radio" id="u.s." name="section">
+				<label for="u.s.">U.S.</label>
+				<br>
+    				<input type="radio" id="politics" name="section">
+    				<label for="politics">Politics</label>
+				<br>
+    				<input type="radio" id="opinion" name="section">
+    				<label for="opinion">Opinion</label>
+				<br>
+    				<input type="radio" id="tech" name="section">
+    				<label for="tech">Tech</label>
+				<br>
+    				<input type="radio" id="sports" name="section">
+    				<label for="sports">Sports</label>
+				<br>
+    				<input type="radio" id="Arts" name="section">
+    				<label for="arts">Arts</label>
+				<br>
+    				<input type="radio" id="Books" name="section">
+    				<label for="books">Books</label>
+				<br>
+    				<input type="radio" id="travel" name="section">
+    				<label for="travel">Travel</label>
+  			</fieldset>
+			<label>Headline</label>
+			<br>
+			<input type="text" placeholder="WAR!"/>
+			<br>
+			<label>Byline</label>
+			<br>
+			<input type="text" placeholder="Your name"/>
+		</form>
+
+		<button>Submit Story</button>
+		<br>	
+		<button><a href="/auth/logout">Logout</a></button>
 	</div>
 	{% endblock %}
 

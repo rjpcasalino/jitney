@@ -7,6 +7,18 @@ body {
 	line-height: 1;
 }
 
+/* stolen from MDN */
+aside {
+    width: 40%;
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px black;
+    font-style: italic;
+    color: black;
+}
+/* done with stolen style */
+
 .wrapper {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
@@ -126,6 +138,12 @@ body {
 	padding: 11px;
 	border-top: 1px solid black;
 	text-align: end;
+}
+
+.account {
+	display: block;
+	line-height: 2.5;
+	padding: 10px;
 }
 
 #mast-head {
