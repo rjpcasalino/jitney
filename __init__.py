@@ -38,6 +38,8 @@ def create_app(test_config=None):
     def user_loader(email):
         user = db.query_db('SELECT email FROM users WHERE email = ?', 
         [email], one=True)
+        if user is None:
+            return None
         user = User()
         user.id = email
         return user

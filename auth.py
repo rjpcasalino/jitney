@@ -20,21 +20,20 @@ def handle_signup():
     return 'Check logs'
 
 def handle_login():
-    error = None;
     user = query_db('SELECT * FROM users WHERE email = ?', 
         [request.form['email']], one=True)
     if user is None:
-        flash('Incorrect email or password!', error);
-        return redirect(url_for('index'))
+        flash('Incorrect email or password!');
+        return redirect(url_for('index.frontpage'))
     elif bcrypt.checkpw(request.form['password'].encode('utf-8'), user[2]):
-        flash('You were successfully logged in!')
         user = User()
         user.id = request.form['email']
+        user.ip = request.headers
         flask_login.login_user(user)
-        return redirect(url_for('index.index'))
+        return redirect(url_for('index.frontpage'))
     else:
-        flash('Incorrect email or password!', error)
-        return redirect(url_for('index'))
+        flash('Incorrect email or password!')
+        return redirect(url_for('index.frontpage'))
 
 @bp.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -51,4 +50,4 @@ def login():
 @bp.route('/logout')
 def logout():
     flask_login.logout_user()
-    return 'logged out!'
+    return redirect(url_for('auth.login'))

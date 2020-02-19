@@ -1,17 +1,7 @@
-{% include 'partials/head.html' %}    
-<body>
-	<div class="menu">
-		{% if current_user.is_authenticated %}
-			<a href="/account" id="login">{{ current_user.id }}</a>
-		{% else %}
-			<a href="/auth/login" id="login">Log In</a>
-		{% endif %}
-			
-	</div>
+{% extends 'base.html' %}    
+
+	{% block content %}	
 	<div class="wrapper">
-			
-{% include 'partials/mast-head.html' %}
-	
 	<div class="main-section">
 		<h1>Vox populi to world leaders: <em>HELLO?!</em></h1>
 		<p>Save us! Save us!</p>
@@ -61,8 +51,4 @@
 		<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/310px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg" decoding="async" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/465px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/620px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg 2x" width="100%" height="auto">
 		</div>
 	</div>
-	
-	{% include 'partials/foot.html' %}
-    
-	</body>
-</html>
+	{% endblock %}

@@ -22,15 +22,10 @@ def detect_user_language():
             return response
 
 @bp.route('/', methods=['GET', 'POST'])
-def index():
-    for i in dir(request):
-        if i == 'headers':
-            print(request.headers)
-    browser = request.user_agent.browser
-
+def frontpage():
     if 'email' in session:
-        return render_template('index.html', email=session['email'], time=time.ctime())
-    return render_template('index.html', time=time.ctime())
+        return render_template('front.html', email=session['email'], time=time.ctime())
+    return render_template('front.html', time=time.ctime())
 
 @bp.route('/account')
 @flask_login.login_required
