@@ -1,9 +1,10 @@
-{% include 'partials/head.html' %}
+{% extends 'base.html' %}
 
-<form method="POST">
-	<input name="email" type="email" placeholder="your email" required/>
-	<input name="password" type="password" placeholder="password" required/>
-	<input type="submit" value="Get Invite"/>
-</form>
+	{% block content %}
+	<form method="POST">
+		<input name="email" type="email" placeholder="your email" required/>
+		<input name="password" type="password" placeholder="password" required/>
+		<input type="submit" value="Get Invite"/>
+	</form>
+	{% endblock %}
 
-{% include 'partials/foot.html' %}

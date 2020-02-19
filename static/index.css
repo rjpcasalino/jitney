@@ -128,6 +128,15 @@ body {
 	text-align: end;
 }
 
+#mast-head {
+	text-decoration: none;
+	color: black;
+}
+
+#mast-head:visited {
+	color: black;
+}
+
 #today {
 	display: grid;
 	justify-content: right;
@@ -135,8 +144,8 @@ body {
 }
 
 #container {
-  display: flex;
-  justify-content: space-between; 
+  	display: flex;
+  	justify-content: space-between; 
 }
 
 #login {
