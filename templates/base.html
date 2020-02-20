@@ -19,11 +19,16 @@
 			{% block sidebar %}
 			{% endblock %}
 		</aside>
-        	<div class="ad">
-			<em>advertisement</em>
-			{% block ad %}
-			{% endblock %}
-		</div>
+		
+		{% if current_user.is_authenticated %}
+		<script>console.log('WELCOME');</script>
+		{% else %}
+        		<div class="ad">
+				<em>advertisement</em>
+				{% block ad %}
+				{% endblock %}
+			</div>
+		{% endif %}
     	</div>
 
 	{% include 'partials/foot.html' %}
