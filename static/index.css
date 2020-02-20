@@ -1,5 +1,6 @@
 body {
-	cursor: pointer;
+	/*cursor: pointer;*/
+	font-family: sans-serif;
 	background-color: #f2eecb;
 	overflow: auto;
 	line-height: 1;
@@ -25,6 +26,7 @@ body {
 .wrapper {
 	display: grid;
 	grid-gap: 20px;
+	padding: 20px;
 	grid-template-areas:
 		"header"
 		"nav"
@@ -47,6 +49,9 @@ body {
     	display: flex;
     	justify-content: space-evenly;
  }
+ #lead {
+	display: block;
+ }
 }
 
 @media (min-width: 700px) {
@@ -62,6 +67,9 @@ body {
  nav ul {
     	display: flex;
     	justify-content: space-evenly;
+ }
+ #lead {
+	display: block;
  }
 }
 
@@ -134,9 +142,14 @@ body {
 	padding: 10px;
 }
 
-#lead img {
-	vertical-align: top;
+#lead {
 	padding: .5em;
+	display:flex;
+	flex-flow:row;
+}
+
+#lead-content {
+	margin-left:1em;
 }
 
 #mast-head {
