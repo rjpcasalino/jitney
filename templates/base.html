@@ -12,13 +12,17 @@
 	
 		<article class="content" >
 			{% block content %}
-
 			{% endblock %}
 		</article>
 	
-		<aside class="side">Sidebar
+		<aside class="side">
+			{% block sidebar %}
+			{% endblock %}
 		</aside>
-        	<div class="ad">Advertising
+        	<div class="ad">
+			<em>advertisement</em>
+			{% block ad %}
+			{% endblock %}
 		</div>
     	</div>
 

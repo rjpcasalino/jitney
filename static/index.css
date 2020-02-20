@@ -29,7 +29,7 @@ body {
 	grid-gap: 20px;
 	grid-template-areas:
 		"header"
-		"sections"
+		"nav"
 		"content"
 		"sidebar"
 		"ad"
@@ -38,34 +38,33 @@ body {
 
 @media (min-width: 500px) {
 .wrapper {
-	display: grid;
 	grid-template-columns: 1fr 3fr;
 	grid-template-areas:
 		"header header"
-		"sections sections"
+		"nav nav"
 		"content sidebar"
 		"footer footer";
  }
-   .sections ul {
+ nav ul {
     	display: flex;
     	justify-content: space-between;
-  }
+ }
 }
 
 @media (min-width: 700px) {
 .wrapper {
-	display: grid;
 	grid-template-columns: 1fr 4fr 1fr;
 	grid-template-areas:
 		"header header header"
-		"sections content sidebar"
-		"sections content ad"
+		"nav nav nav"
+		"sidebar content ad"
 		"footer footer footer";
 
  }
-  .sections ul {
-     flex-direction: column;
-   }
+ nav ul {
+    	display: flex;
+    	justify-content: space-between;
+ }
 }
 
 .menu {
@@ -74,14 +73,10 @@ body {
 }
 
 .sections {
-	grid-area: sections;
+	grid-area: nav;
 	color: black;
 	border-top: 1px solid black;
 	border-bottom: double black;
-}
-.sections ul {
-	display: flex;
-	justify-content: space-between;
 }
 
 .sections h1 {
@@ -138,6 +133,11 @@ body {
 	display: block;
 	line-height: 2.5;
 	padding: 10px;
+}
+
+#lead img {
+	vertical-align: text-top;
+	padding: .5em;
 }
 
 #mast-head {
