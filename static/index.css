@@ -2,8 +2,6 @@ body {
 	cursor: pointer;
 	background-color: #f2eecb;
 	overflow: auto;
-	max-width: 1200px;
-	margin: 0 auto;
 	line-height: 1;
 }
 
@@ -68,8 +66,9 @@ body {
 }
 
 .menu {
-	margin-top: 1em;
-	float: right;
+	display: flex;
+	flex-flow:row-reverse;
+	margin-top: .5em;
 }
 
 .sections {
