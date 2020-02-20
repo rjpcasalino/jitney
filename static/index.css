@@ -45,7 +45,7 @@ body {
  }
  nav ul {
     	display: flex;
-    	justify-content: space-between;
+    	justify-content: space-evenly;
  }
 }
 
@@ -61,7 +61,7 @@ body {
  }
  nav ul {
     	display: flex;
-    	justify-content: space-between;
+    	justify-content: space-evenly;
  }
 }
 
