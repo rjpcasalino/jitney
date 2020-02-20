@@ -26,9 +26,10 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from . import auth, index
+    from . import auth, index, books
     app.register_blueprint(index.bp)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(books.bp)
 
     login_manager = flask_login.LoginManager()
 
