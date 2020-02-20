@@ -1,33 +1,18 @@
-    		
-	<div class="menu">
-		{% if current_user.is_authenticated %}
-			<a href="/account" id="login">{{ current_user.id }}</a>
-		{% else %}
-			<a href="/auth/login" id="login">Log In</a>
-		{% endif %}
-			
-	</div>
-		<div class="mast-head">
-			<small>English<span>&MediumSpace;</span>Español</small>
+		<div class="header">
+			<div class="menu">
+			{% if current_user.is_authenticated %}
+				<a href="/account" id="login">{{ current_user.id }}</a>
+			{% else %}
+				<a href="/auth/login" id="login">Log In</a>
+			{% endif %}
+			</div>
+			<!--<small>English<span>&MediumSpace;</span>Español</small>-->
 			<h1><a id="mast-head" href="/">The Jitney International Times</a></h1>
 			<div class="time">
 				<time>{{time}}</time> 
 			</div>
 			<div class="price">
 				<small><em>Always & Forever</em> 5&cent;</small>
-			</div>
-			<div class="sections">
-				<ul style="list-style:none; padding:10px;">
-					<li>World</li>
-					<li>U.S.</li>
-					<li>Politics</li>
-					<li>Opinion</li>
-					<li>Tech</li>
-					<li>Sports</li>
-					<li>Arts</li>
-					<li>Books</li>
-					<li>Travel</li>
-				</ul>
 			</div>
 			{% with messages = get_flashed_messages() %}
   				{% if messages %}

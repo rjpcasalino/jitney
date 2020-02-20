@@ -1,10 +1,8 @@
 import functools
 import time
-
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response
 )
-
 import flask_login
 
 bp = Blueprint('index', __name__, url_prefix='/')
@@ -26,6 +24,11 @@ def frontpage():
     if 'email' in session:
         return render_template('front.html', email=session['email'], time=time.ctime())
     return render_template('front.html', time=time.ctime())
+
+@bp.route('/submit', methods=['POST'])
+def submit():
+    print(request.form)
+    return request.form  
 
 @bp.route('/account')
 @flask_login.login_required

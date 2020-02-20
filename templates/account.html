@@ -22,49 +22,53 @@
 			<button>Save</button>
 		</form>
 
-		<form>
+		<form method="POST" action="/submit">
   			<fieldset>
     				<legend>Choose a section</legend>
-
-    				<input type="radio" id="world" name="section">
+    				<input type="radio" value="world" id="world" name="section" required>
     				<label for="world">World</label>
 				<br/>
-				<input type="radio" id="u.s." name="section">
+				<input type="radio" value="us" id="u.s." name="section">
 				<label for="u.s.">U.S.</label>
 				<br>
-    				<input type="radio" id="politics" name="section">
+    				<input type="radio" value="politics" id="politics" name="section">
     				<label for="politics">Politics</label>
 				<br>
-    				<input type="radio" id="opinion" name="section">
+    				<input type="radio" value="opinion" id="opinion" name="section">
     				<label for="opinion">Opinion</label>
 				<br>
-    				<input type="radio" id="tech" name="section">
+    				<input type="radio" value="tech" id="tech" name="section">
     				<label for="tech">Tech</label>
 				<br>
-    				<input type="radio" id="sports" name="section">
+    				<input type="radio" value="sports" id="sports" name="section">
     				<label for="sports">Sports</label>
 				<br>
-    				<input type="radio" id="Arts" name="section">
+    				<input type="radio" value="arts" id="Arts" name="section">
     				<label for="arts">Arts</label>
 				<br>
-    				<input type="radio" id="Books" name="section">
+    				<input type="radio" value="books" id="Books" name="section">
     				<label for="books">Books</label>
 				<br>
-    				<input type="radio" id="travel" name="section">
+    				<input type="radio" value="travel" id="travel" name="section">
     				<label for="travel">Travel</label>
   			</fieldset>
 			<label>Headline</label>
 			<br>
-			<input type="text" placeholder="WAR!"/>
+			<input type="text" placeholder="WAR!" required/>
+			<br>
+			<label>Subheading</label>
+			<br>
+			<input type="text" placeholder="Axis attack!" required/>
+			<br>
+			<textarea name="story" rows="5" cols="50%" required></textarea>
 			<br>
 			<label>Byline</label>
 			<br>
-			<input type="text" placeholder="Your name"/>
+			<input type="text" placeholder="Your name" required/>
+			<br>
+			<button>Submit Story</button>
 		</form>
-
-		<button>Submit Story</button>
-		<br>	
-		<button><a href="/auth/logout">Logout</a></button>
+		<a href="/auth/logout">Logout</a>
 	</div>
 	{% endblock %}
 
