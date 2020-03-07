@@ -3,7 +3,9 @@ import time
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response
 )
+
 import flask_login
+from . import db
 
 bp = Blueprint("index", __name__, url_prefix="/")
 
