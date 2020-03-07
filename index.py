@@ -5,30 +5,29 @@ from flask import (
 )
 import flask_login
 
-bp = Blueprint('index', __name__, url_prefix='/')
+bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.before_request
 def detect_user_language():
-    language = request.cookies.get('lang')
+    language = request.cookies.get("lang")
     
     if language is None:
-        language = 'en-US' ## gonna guess
+        language = "en-US" ## gonna guess
 
         @after_this_request
         def remember_lang(response):
-            response.set_cookie('lang', language)
+            response.set_cookie("lang", language)
             return response
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route("/", methods=["GET", "POST"])
 def frontpage():
-    return render_template('front.html', time=time.ctime())
+    return render_template("front.html", time=time.ctime())
 
-@bp.route('/submit', methods=['POST'])
+@bp.route("/submit", methods=["POST"])
 def submit():
-    print(request.form)
-    return request.form  
+    return render_template("signup.html")
 
-@bp.route('/account')
+@bp.route("/account")
 @flask_login.login_required
 def account():
-    return render_template('account.html')
+    return render_template("account.html")
