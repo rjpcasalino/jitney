@@ -8,16 +8,8 @@ import flask_login
 bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.before_request
-def detect_user_language():
-    language = request.cookies.get("lang")
-    
-    if language is None:
-        language = "en-US" ## gonna guess
-
-        @after_this_request
-        def remember_lang(response):
-            response.set_cookie("lang", language)
-            return response
+def load_stories():
+    g.stories = db.query_db("SELECT * FROM stories;", one=True)
 
 @bp.route("/", methods=["GET", "POST"])
 def frontpage():
