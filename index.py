@@ -7,21 +7,21 @@ from flask import (
 import flask_login
 from . import db
 
-bp = Blueprint('index', __name__, url_prefix='/')
+bp = Blueprint("index", __name__, url_prefix="/")
+
 @bp.before_request
 def load_stories():
-    g.stories = db.query_db('SELECT * FROM stories;', one=True)
+    g.stories = db.query_db("SELECT * FROM stories;", one=True)
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route("/", methods=["GET", "POST"])
 def frontpage():
-    return render_template('front.html', time=time.ctime())
+    return render_template("front.html", time=time.ctime())
 
-@bp.route('/submit', methods=['POST'])
+@bp.route("/submit", methods=["POST"])
 def submit():
-    print(request.form)
-    return request.form  
+    return render_template("signup.html")
 
-@bp.route('/account')
+@bp.route("/account")
 @flask_login.login_required
 def account():
-    return render_template('account.html')
+    return render_template("account.html")
