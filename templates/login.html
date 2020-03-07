@@ -2,11 +2,11 @@
 
   {% block content %}
   <form method="POST" style="text-align:center;">
-      <input type="email" name="email" placeholder="email" required />
-      <input type="password" name="password" placeholder="password" />
+      <input type="email" name="email" placeholder="email" required/>
+      <input type="password" name="password" placeholder="password"/>
       <br>
-      <input type="submit" value="Log in" />
+      <input type="submit" value="Log in"/>
+      <small>Not a member? <span><a href="/auth/signup">Request an invite!</a></span></small>
   </form>
-  <small>Not a member? <span><a href="/auth/signup">Request an invite!</a></span></small>
   {% endblock %}
 
