@@ -25,7 +25,7 @@ def handle_login():
     if user is None:
         flash("Whoops! Incorrect email or password.");
         return redirect(url_for("index.frontpage"))
-    elif bcrypt.checkpw(request.form["password"].encode("utf-8"), user[2]):
+    elif bcrypt.checkpw(request.form["password"].encode("utf-8"), user[2].encode("utf-8")):
         user = User()
         user.id = request.form["email"]
         user.ip = request.headers
