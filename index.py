@@ -21,8 +21,6 @@ def detect_user_language():
 
 @bp.route('/', methods=['GET', 'POST'])
 def frontpage():
-    if 'email' in session:
-        return render_template('front.html', email=session['email'], time=time.ctime())
     return render_template('front.html', time=time.ctime())
 
 @bp.route('/submit', methods=['POST'])
