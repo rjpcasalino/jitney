@@ -45,4 +45,8 @@ def create_app(test_config=None):
         user.id = email
         return user
     
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return "Sorry, I couldn't find that page :(", 404
+
     return app
