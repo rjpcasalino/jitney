@@ -10,7 +10,7 @@ bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.before_request
 def load_stories():
-    g.stories = db.query_db("SELECT * FROM stories;", one=True)
+    g.lead_stories = db.query_db("SELECT title, headline, byline, preview, publishYear, publishMonth, publishDay FROM stories WHERE lead = 1;")
 
 @bp.route("/", methods=["GET", "POST"])
 def frontpage():
