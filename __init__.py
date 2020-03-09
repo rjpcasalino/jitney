@@ -9,8 +9,8 @@ def create_app(test_config=None):
     # create and configure jitney
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-            SECRET_KEY = os.environ['APP_KEY'],
-            DATABASE = os.path.join(app.instance_path, os.environ['JITNEY_DB'])
+        SECRET_KEY=os.environ['APP_KEY'],
+        DATABASE=os.path.join(app.instance_path, os.environ['JITNEY_DB'])
     )
 
     if test_config is None:
@@ -34,15 +34,19 @@ def create_app(test_config=None):
     login_manager = flask_login.LoginManager()
 
     login_manager.init_app(app)
-    
-    @login_manager.user_loader    
+
+    @login_manager.user_loader
     def user_loader(email):
-        user = db.query_db('SELECT email FROM users WHERE email = ?', 
-        [email], one=True)
+        user = db.query_db('SELECT email FROM users WHERE email = ?',
+                           [email], one=True)
         if user is None:
             return None
         user = User()
         user.id = email
         return user
-    
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return "Sorry, I couldn't find that page :(", 404
+
     return app

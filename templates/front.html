@@ -1,28 +1,30 @@
 {% extends 'base.html' %}    
 
+	{% set c = g.lead_stories %}
 	{% block content %}	
 	<div id="lead">
 	<div id="lead-content">
-		<h1>'Tis the times plague when madmen lead the blind</h1>
+		<a class="story" href="/{{c[0]["publishYear"]}}/{{c[0]["publishMonth"]}}/{{c[0]["publishDay"]}}/{{c[0]["title"]}}.html">
+		<h1>{{c[0]["headline"]}}</h1>
 		<img style="float:left; padding:5px 10px;" alt="king lear" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/310px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg" decoding="async" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/465px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4b/William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg/620px-William_Dyce_-_King_Lear_and_the_Fool_in_the_Storm.jpg 2x" width="350px" height="auto"> 
 		<p>
 		<code>
-			**    May you do good and not evil.
-			**    May you find forgiveness for yourself and forgive others.
-			**    May you share freely, never taking more than you give.
-			**
+			{{c[0]["preview"]}}
 		</code>
 		</p>
+		</a>
 	</div>
 	</div>
 
 	{% endblock %}
 
 	{% block sidebar %}
-	<h1>{{ g.stories[1] }}</h1>
+	<a class="story" href="/{{c[1]["publishYear"]}}/{{c[1]["publishMonth"]}}/{{c[1]["publishDay"]}}/{{c[1]["title"]}}.html">
+	<h1>{{ c[1]["headline"] }}</h1>
 	<p>
-	{{ g.stories[2] }}
+	{{ c[1]["preview"] }}
 	</p>
+	</a>
 	{% endblock %}
 
 	{% block ad %}

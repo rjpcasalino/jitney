@@ -11,6 +11,7 @@ from .user import User
 
 bp = Blueprint("books", __name__, url_prefix="/books")
 
+
 @bp.route("/", methods=["GET", "POST"])
 def books():
     return render_template("books.html")

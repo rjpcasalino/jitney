@@ -143,6 +143,15 @@ body {
 	padding: 10px;
 }
 
+.story {
+	text-decoration: none;
+	color: black;
+}
+
+.story:visited {
+	color: black;
+}
+
 #lead {
 	/*padding: .5em;
 	display:flex;
