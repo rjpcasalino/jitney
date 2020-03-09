@@ -1,5 +1,4 @@
 import functools
-import time
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response
 )
@@ -15,7 +14,11 @@ def load_stories():
 
 @bp.route("/", methods=["GET", "POST"])
 def frontpage():
-    return render_template("front.html", time=time.ctime())
+    return render_template("front.html")
+
+@bp.route("/<year>/<month>/<day>/<section>/<story>.html")
+def story(year, month, day, section, story):
+    return f"{year, month, day, section, story}"
 
 @bp.route("/submit", methods=["POST"])
 def submit():
@@ -25,3 +28,4 @@ def submit():
 @flask_login.login_required
 def account():
     return render_template("account.html")
+
