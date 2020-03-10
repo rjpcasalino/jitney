@@ -118,12 +118,6 @@ body {
 	width: 100%;
 }
 
-.time {
-	display: grid;
-	justify-content: left;
-	font-size: 12px;
-}
-
 .price {
 	display: grid;
 	justify-content: right;
@@ -152,14 +146,6 @@ body {
 	color: black;
 }
 
-#lead {
-	/*padding: .5em;
-	display:flex;
-	flex-flow:row;*/
-}
-
-#lead-content {
-}
 
 #mast-head {
 	text-decoration: none;
