@@ -37,8 +37,8 @@ def submit():
 def account():
     return render_template("account.html")
 
-@bp.route("/morning")
-def morning():
+@bp.route("/forecast")
+def forecast():
     if request.args.get('lat') is None or request.args.get('lng') is None:
         return 'Bad Request', 400
     url = f"https://api.darksky.net/forecast/{current_app.config['DARKSKY_API']}/{request.args.get('lat')},{request.args.get('lng')}"
