@@ -1,6 +1,6 @@
 import functools
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response, jsonify
 )
 
 import flask_login
@@ -34,3 +34,7 @@ def submit():
 @flask_login.login_required
 def account():
     return render_template("account.html")
+
+@bp.route("/heart_beat")
+def heart_beat():
+    return jsonify({"key": "value"})
