@@ -1,6 +1,7 @@
 import functools
+import urllib3
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, after_this_request, make_response
+    Blueprint, flash, current_app, g, redirect, render_template, request, session, url_for, after_this_request, make_response, jsonify
 )
 
 import flask_login
@@ -8,6 +9,7 @@ from . import db
 
 bp = Blueprint("index", __name__, url_prefix="/")
 
+http = urllib3.PoolManager()
 
 @bp.before_request
 def load_stories():
@@ -34,3 +36,11 @@ def submit():
 @flask_login.login_required
 def account():
     return render_template("account.html")
+
+@bp.route("/morning")
+def morning():
+    if request.args.get('lat') is None or request.args.get('lng') is None:
+        return 'Bad Request', 400
+    url = f"https://api.darksky.net/forecast/{current_app.config['DARKSKY_API']}/{request.args.get('lat')},{request.args.get('lng')}"
+    r = http.request("GET", url)
+    return r.data
