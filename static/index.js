@@ -2,7 +2,7 @@
 
 const e = React.createElement;
 
-class Morning extends React.Component {
+class Widget extends React.Component {
   constructor(props) {
     super(props);
     this.state = { date: new Date(), data: 'Incoming...' };
@@ -13,23 +13,23 @@ class Morning extends React.Component {
 		() => this.tick(),
 		1000
 	);
-	this.weatherID = setInterval(
-		() => this.fetchWeather(),
+	this.forecastID = setInterval(
+		() => this.fetchForecast(),
 		600000
 	);
-	this.fetchWeather();
+	this.fetchForecast();
   }
 
   componentWillUnmount() {
 	  clearInterval(this.timerID);
-	  clearInterval(this.weatherID);
+	  clearInterval(this.forecastID);
   }
 
 tick() {
 	this.setState({date: new Date()});
 }
 
-fetchWeather = async () => { 
+fetchForecast = async () => { 
 	let options = {
 		lat: null,
 		lng: null
@@ -41,7 +41,7 @@ fetchWeather = async () => {
 	options.lat = resJSON.location.lat;
 	options.lng = resJSON.location.lng;
 
-        let darkskyRequest = await fetch(`/morning?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
+        let darkskyRequest = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
 	let darkskyResponse = await darkskyRequest.json();
 	
 	this.setState({ data: darkskyResponse.minutely.summary });
@@ -58,4 +58,4 @@ fetchWeather = async () => {
 }
 
 const domContainer = document.querySelector('#morning');
-ReactDOM.render(e(Morning), domContainer);
+ReactDOM.render(e(Widget), domContainer);
