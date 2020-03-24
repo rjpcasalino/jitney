@@ -15,7 +15,6 @@ http = urllib3.PoolManager()
 def load_stories():
     g.lead_stories = db.query_db(
         "SELECT title, headline, byline, preview, publishYear, publishMonth, publishDay FROM stories WHERE lead = 1;")
-    g.darksky_api = "10e290e9e7bcc2b71c38684cc11a171c"
 
 
 @bp.route("/", methods=["GET", "POST"])
