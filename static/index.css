@@ -124,6 +124,12 @@ body {
 	font-size: 12px;
 }
 
+#morning {
+	display: grid;
+	justify-content: left;
+	font-size: 12px;
+}
+
 .footer {
 	grid-area: footer;
 	padding: 11px;
