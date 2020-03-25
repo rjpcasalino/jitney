@@ -44,12 +44,13 @@ geoFindMe = async () => {
 
   const error = () => {
     console.log('Unable to retrieve your location');
+    this.setState({ forecast: 'Unable to fetch forecast!' })
   }
 
   if (!navigator.geolocation) {
-    status.textContent = 'Geolocation is not supported by your browser';
+    console.log('Geolocation is not supported by your browser');
+    this.setState({ forecast: 'Geolocation not supported!' })
   } else {
-    console.log('Updating...')
     navigator.geolocation.getCurrentPosition(success, error);
   }
 }
