@@ -38,7 +38,6 @@ geoFindMe = async () => {
     };
     options.lat  = position.coords.latitude;
     options.lng = position.coords.longitude;
-    console.log('Return options');
     this.fetchForecast(options);
   }
 
@@ -57,11 +56,9 @@ geoFindMe = async () => {
 
 
 fetchForecast = async (options) => { 
-
-        let darkskyRequest = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
-	let darkskyResponse = await darkskyRequest.json();
-	
-	this.setState({ data: darkskyResponse.minutely.summary });
+        let request = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
+	let response = await request.json();
+	this.setState({ forecast: response.minutely.summary });
 }
 
 
@@ -69,7 +66,7 @@ fetchForecast = async (options) => {
 	  return e('div', null, null,
 	  	  e('small', null, `${this.state.date.toLocaleTimeString()}`), 
 		  e('br'), 
-		  e('small', null, `${this.state.data}`),
+		  e('small', null, `${this.state.forecast}`),
 	  );
   }
 }
