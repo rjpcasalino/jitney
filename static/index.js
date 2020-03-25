@@ -5,7 +5,7 @@ const e = React.createElement;
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(), data: 'Incoming...' };
+    this.state = { date: new Date(), forecast: 'Fetching...' };
   }
 
   componentDidMount() {
