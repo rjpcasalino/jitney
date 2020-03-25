@@ -13,33 +13,49 @@ class Widget extends React.Component {
 		() => this.tick(),
 		1000
 	);
-	this.forecastID = setInterval(
-		() => this.fetchForecast(),
-		600000
+	this.geoFindMeID = setInterval(
+		() => this.geoFindMe(),
+		60000
 	);
-	this.fetchForecast();
+	this.geoFindMe();
   }
 
   componentWillUnmount() {
 	  clearInterval(this.timerID);
-	  clearInterval(this.forecastID);
+	  clearInterval(this.getFindMeID);
   }
 
 tick() {
 	this.setState({date: new Date()});
 }
 
-fetchForecast = async () => { 
-	let options = {
-		lat: null,
-		lng: null
-	};
+geoFindMe = async () => {
+  
+ const success = (position) => {
+   let options = {
+	lat: null,
+	lng: null
+    };
+    options.lat  = position.coords.latitude;
+    options.lng = position.coords.longitude;
+    console.log('Return options');
+    this.fetchForecast(options);
+  }
 
-	let res = await fetch('https://location.services.mozilla.com/v1/geolocate?key=test', { mode: 'cors' });
-	let resJSON = await res.json();
+  const error = () => {
+    console.log('Unable to retrieve your location');
+  }
 
-	options.lat = resJSON.location.lat;
-	options.lng = resJSON.location.lng;
+  if (!navigator.geolocation) {
+    status.textContent = 'Geolocation is not supported by your browser';
+  } else {
+    console.log('Updating...')
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+}
+
+
+fetchForecast = async (options) => { 
 
         let darkskyRequest = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
 	let darkskyResponse = await darkskyRequest.json();
