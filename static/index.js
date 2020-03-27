@@ -58,7 +58,11 @@ geoFindMe = async () => {
 fetchForecast = async (options) => { 
         let request = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
 	let response = await request.json();
-	this.setState({ forecast: response.minutely.summary });
+	if (response.minutely.summary != undefined) {
+		this.setState({ forecast: response.minutely.summary });
+	} else {
+		this.setState({ forecaste: response.error });
+	}
 }
 
 
