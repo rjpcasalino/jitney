@@ -42,13 +42,13 @@ class Widget extends React.Component {
       });
       let response = await request.json();
 
-      if (response.minutely.summary != undefined) {
+      if (!!response.minutely) {
         this.setState({
           forecast: response.minutely.summary
         });
       } else {
         this.setState({
-          forecaste: response.error
+          forecast: response.error
         });
       }
     });
