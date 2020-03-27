@@ -1,0 +1,25 @@
+{
+  "name": "jitney",
+  "description": "",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel --plugins @babel/plugin-proposal-class-properties static/src -d static/lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjpcasalino/jitney.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rjpcasalino/jitney/issues"
+  },
+  "homepage": "https://github.com/rjpcasalino/jitney",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3"
+  }
+}
