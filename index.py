@@ -43,4 +43,6 @@ def forecast():
         return 'Bad Request', 400
     url = f"https://api.darksky.net/forecast/{current_app.config['DARKSKY_API']}/{request.args.get('lat')},{request.args.get('lng')}"
     r = http.request("GET", url)
-    return r.data
+    if r.data is not None:
+        return r.data
+    return r.error
