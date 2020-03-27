@@ -41,9 +41,16 @@ class Widget extends React.Component {
         mode: 'cors'
       });
       let response = await request.json();
-      this.setState({
-        forecast: response.minutely.summary
-      });
+
+      if (response.minutely.summary != undefined) {
+        this.setState({
+          forecast: response.minutely.summary
+        });
+      } else {
+        this.setState({
+          forecaste: response.error
+        });
+      }
     });
 
     this.state = {
