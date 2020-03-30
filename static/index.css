@@ -50,8 +50,15 @@ body {
     	display: flex;
     	justify-content: space-evenly;
  }
- #lead {
-	display: block;
+.picture-left {
+	float: left;
+	width: 40%;
+	overflow: hidden; 
+	margin-right: 10px;
+ }
+.text-left {
+	float: left;
+	width: 55%;
  }
 }
 
@@ -69,10 +76,26 @@ body {
     	display: flex;
     	justify-content: space-evenly;
  }
- #lead {
-	display: block;
+#lead #lead-content .picture-left {
+	float: left;
+	width: 40%;
+	overflow: hidden; 
+	margin-right: 10px;
+ }
+#lead #lead-content .text-left {
+	float: left;
+	width: 55%;
  }
 }
+
+.picture-left {
+	float: none;
+	width: inherit;
+ }
+.text-left {
+	float: none;
+	width: inherit;
+ }
 
 .menu {
 	display: flex;
@@ -120,12 +143,6 @@ body {
 	font-size: 12px;
 }
 
-#morning {
-	display: grid;
-	justify-content: left;
-	font-size: 12px;
-}
-
 .footer {
 	grid-area: footer;
 	padding: 11px;
@@ -147,7 +164,6 @@ body {
 .story:visited {
 	color: black;
 }
-
 
 #mast-head {
 	text-decoration: none;
@@ -178,4 +194,10 @@ body {
 	padding: 7px;
 	text-decoration: none;
 	margin: 2px;
+}
+
+#morning {
+	display: grid;
+	justify-content: left;
+	font-size: 12px;
 }
