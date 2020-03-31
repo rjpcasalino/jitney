@@ -1,5 +1,6 @@
 import functools
 import urllib3
+import json
 from flask import (
     Blueprint, flash, current_app, g, redirect, render_template, request, session, url_for, after_this_request, make_response, jsonify
 )
@@ -41,8 +42,13 @@ def account():
 def forecast():
     if request.args.get('lat') is None or request.args.get('lng') is None:
         return 'Bad Request', 400
-    url = f"https://api.darksky.net/forecast/{current_app.config['DARKSKY_API']}/{request.args.get('lat')},{request.args.get('lng')}"
-    r = http.request("GET", url)
+    url = f"https://api.weather.gov/points/{request.args.get('lat')},{request.args.get('lng')}"
+    r = http.request('GET', url, headers={ 'User-Agent': '(jitney.cab, contact@jitney.cab)'})
     if r.data is not None:
-        return r.data
-    return r.error
+        url = json.loads(r.data)
+        print(url["properties"]['forecast'])
+        r = http.request('GET', url['properties']['forecast'], headers={ 'User-Agent': '(jitney.cab, contact@jitney.cab)'})
+        if r.data is not None:
+            data = json.loads(r.data)
+            return jsonify(data['properties']['periods'][0]['detailedForecast'])
+    return jsonify(error="Error: weather.gov request failed!")
