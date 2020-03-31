@@ -43,12 +43,12 @@ def forecast():
     if request.args.get('lat') is None or request.args.get('lng') is None:
         return 'Bad Request', 400
     url = f"https://api.weather.gov/points/{request.args.get('lat')},{request.args.get('lng')}"
-    r = http.request('GET', url, headers={ 'User-Agent': '(jitney.cab, contact@jitney.cab)'})
+    r = http.request("GET", url, headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
     if r.data is not None:
         url = json.loads(r.data)
-        print(url["properties"]['forecast'])
-        r = http.request('GET', url['properties']['forecast'], headers={ 'User-Agent': '(jitney.cab, contact@jitney.cab)'})
+        print(url["properties"]["forecast"])
+        r = http.request("GET", url["properties"]["forecast"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
         if r.data is not None:
             data = json.loads(r.data)
-            return jsonify(data['properties']['periods'][0]['detailedForecast'])
+            return jsonify(data["properties"]["periods"][0]["detailedForecast"])
     return jsonify(error="Error: weather.gov request failed!")
