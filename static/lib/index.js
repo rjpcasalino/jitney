@@ -42,9 +42,9 @@ class Widget extends React.Component {
       });
       let response = await request.json();
 
-      if (!!response.minutely) {
+      if (response) {
         this.setState({
-          forecast: response.minutely.summary
+          forecast: response
         });
       } else {
         this.setState({
