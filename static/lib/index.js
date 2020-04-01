@@ -41,12 +41,14 @@ class Widget extends React.Component {
         mode: 'cors'
       });
       let response = await request.json();
+      console.log(response);
 
       if (!!response) {
         this.setState({
           forecast: response.shortForecast,
           temp: response.temperature,
-          windSpeed: response.windSpeed
+          windSpeed: response.windSpeed,
+          windDir: response.windDirection
         });
       } else {
         this.setState({
@@ -59,7 +61,8 @@ class Widget extends React.Component {
       date: new Date(),
       forecast: 'Fetching...',
       temp: '',
-      windSpeed: ''
+      windSpeed: '',
+      windDir: ''
     };
   }
 
@@ -81,7 +84,7 @@ class Widget extends React.Component {
   }
 
   render() {
-    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp}`), e('br'), e('small', null, `${this.state.windSpeed}`));
+    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp} F`), e('br'), e('small', null, `${this.state.windSpeed} ${this.state.windDir}`));
   }
 
 }

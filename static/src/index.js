@@ -5,7 +5,7 @@ const e = React.createElement;
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(), forecast: 'Fetching...', temp: '', windSpeed: '' };
+    this.state = { date: new Date(), forecast: 'Fetching...', temp: '', windSpeed: '', windDir: '' };
   }
 
   componentDidMount() {
@@ -58,8 +58,9 @@ geoFindMe = async () => {
 fetchForecast = async (options) => { 
         let request = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
 	let response = await request.json();
+	console.log(response);
 	if (!!response) {
-		this.setState({ forecast: response.shortForecast, temp: response.temperature, windSpeed: response.windSpeed });
+		this.setState({ forecast: response.shortForecast, temp: response.temperature, windSpeed: response.windSpeed, windDir: response.windDirection});
 	} else {
 		this.setState({ forecast: response.error });
 	}
@@ -72,9 +73,9 @@ fetchForecast = async (options) => {
 		  e('br'), 
 		  e('small', null, `${this.state.forecast}`),
 		  e('br'), 
-		  e('small', null, `${this.state.temp}`),
+		  e('small', null, `${this.state.temp} F`),
 		  e('br'), 
-		  e('small', null, `${this.state.windSpeed}`),
+		  e('small', null, `${this.state.windSpeed} ${this.state.windDir}`),
 	  );
   }
 }
