@@ -59,7 +59,8 @@ class Widget extends React.Component {
 
     this.state = {
       date: new Date(),
-      forecast: 'Fetching...',
+      forecastName: 'Fetching...',
+      forecast: '',
       temp: '',
       windSpeed: '',
       windDir: ''
@@ -84,7 +85,7 @@ class Widget extends React.Component {
   }
 
   render() {
-    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp} F`), e('br'), e('small', null, `${this.state.windSpeed} ${this.state.windDir}`));
+    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecastName}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp} F`), e('br'), e('small', null, `${this.state.windSpeed} ${this.state.windDir}`));
   }
 
 }
