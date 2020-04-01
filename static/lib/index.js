@@ -45,11 +45,7 @@ class Widget extends React.Component {
 
       if (!!response) {
         this.setState({
-          forecastName: response.name,
-          forecast: response.shortForecast,
-          temp: response.temperature,
-          windSpeed: response.windSpeed,
-          windDir: response.windDirection
+          forecast: response
         });
       } else {
         this.setState({
@@ -59,34 +55,28 @@ class Widget extends React.Component {
     });
 
     this.state = {
-      date: new Date(),
-      forecastName: 'Fetching...',
-      forecast: '',
-      temp: '',
-      windSpeed: '',
-      windDir: ''
+      forecast: ''
     };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
     this.geoFindMeID = setInterval(() => this.geoFindMe(), 60000);
     this.geoFindMe();
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
     clearInterval(this.getFindMeID);
   }
 
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
   render() {
-    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecastName}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp} F`), e('br'), e('small', null, `${this.state.windSpeed} ${this.state.windDir}`));
+    if (this.state.forecast.name != undefined) {
+      return e('div', null, null, e('br'), e('small', null, `${this.state.forecast.name}`), e('br'), e('small', null, `${this.state.forecast.shortForecast}`), e('br'), e('small', null, `${this.state.forecast.temperature}`), e('small', null, `${this.state.forecast.temperatureUnit}`), e('br'), e('small', null, `${this.state.forecast.windSpeed} ${this.state.forecast.windDirection}`), e('br'), e('img', {
+        src: this.state.forecast.icon,
+        id: 'weather-api-icon'
+      }));
+    }
+
+    return null;
   }
 
 }
