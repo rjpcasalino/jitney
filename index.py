@@ -46,9 +46,13 @@ def forecast():
     r = http.request("GET", url, headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
     if r.data is not None:
         url = json.loads(r.data)
-        print(url["properties"]["forecast"])
-        r = http.request("GET", url["properties"]["forecast"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
+        print(url["properties"]["forecastHourly"])
+        r = http.request("GET", url["properties"]["forecastHourly"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
         if r.data is not None:
             data = json.loads(r.data)
-            return jsonify(data["properties"]["periods"][0]["detailedForecast"])
+            return jsonify(
+                    shortForecast=data["properties"]["periods"][0]["shortForecast"],
+                    windSpeed=data["properties"]["periods"][0]["windSpeed"],
+                    temperature=data["properties"]["periods"][0]["temperature"],
+                    )
     return jsonify(error="Error: weather.gov request failed!")
