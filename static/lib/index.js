@@ -42,9 +42,11 @@ class Widget extends React.Component {
       });
       let response = await request.json();
 
-      if (response) {
+      if (!!response) {
         this.setState({
-          forecast: response
+          forecast: response.shortForecast,
+          temp: response.temperature,
+          windSpeed: response.windSpeed
         });
       } else {
         this.setState({
@@ -55,7 +57,9 @@ class Widget extends React.Component {
 
     this.state = {
       date: new Date(),
-      forecast: 'Fetching...'
+      forecast: 'Fetching...',
+      temp: '',
+      windSpeed: ''
     };
   }
 
@@ -77,7 +81,7 @@ class Widget extends React.Component {
   }
 
   render() {
-    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecast}`));
+    return e('div', null, null, e('small', null, `${this.state.date.toLocaleTimeString()}`), e('br'), e('small', null, `${this.state.forecast}`), e('br'), e('small', null, `${this.state.temp}`), e('br'), e('small', null, `${this.state.windSpeed}`));
   }
 
 }
