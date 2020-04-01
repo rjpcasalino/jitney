@@ -60,7 +60,7 @@ fetchForecast = async (options) => {
 	let response = await request.json();
 	console.log(response);
 	if (!!response) {
-		this.setState({ forecast: response.shortForecast, temp: response.temperature, windSpeed: response.windSpeed, windDir: response.windDirection});
+		this.setState({ forecastName: response.name, forecast: response.shortForecast, temp: response.temperature, windSpeed: response.windSpeed, windDir: response.windDirection});
 	} else {
 		this.setState({ forecast: response.error });
 	}

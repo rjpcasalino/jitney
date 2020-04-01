@@ -45,6 +45,7 @@ class Widget extends React.Component {
 
       if (!!response) {
         this.setState({
+          forecastName: response.name,
           forecast: response.shortForecast,
           temp: response.temperature,
           windSpeed: response.windSpeed,
