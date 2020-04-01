@@ -46,7 +46,7 @@ def forecast():
     r = http.request("GET", url, headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
     if r.data is not None:
         url = json.loads(r.data)
-        r = http.request("GET", url["properties"]["forecastHourly"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
+        r = http.request("GET", url["properties"]["forecast"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
         if r.data is not None:
             data = json.loads(r.data)
             return data["properties"]["periods"][0]

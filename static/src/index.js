@@ -5,7 +5,7 @@ const e = React.createElement;
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(), forecast: 'Fetching...', temp: '', windSpeed: '', windDir: '' };
+    this.state = { date: new Date(), forecastName: 'Fetching...' forecast: '', temp: '', windSpeed: '', windDir: '' };
   }
 
   componentDidMount() {
@@ -70,6 +70,8 @@ fetchForecast = async (options) => {
   render() {
 	  return e('div', null, null,
 	  	  e('small', null, `${this.state.date.toLocaleTimeString()}`), 
+		  e('br'), 
+		  e('small', null, `${this.state.forecastName}`),
 		  e('br'), 
 		  e('small', null, `${this.state.forecast}`),
 		  e('br'), 
