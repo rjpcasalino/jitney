@@ -5,14 +5,10 @@ const e = React.createElement;
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(), forecastName: 'Fetching...', forecast: '', temp: '', windSpeed: '', windDir: '' };
+    this.state = { forecast: '' }
   }
 
   componentDidMount() {
-	this.timerID = setInterval(
-		() => this.tick(),
-		1000
-	);
 	this.geoFindMeID = setInterval(
 		() => this.geoFindMe(),
 		60000
@@ -21,13 +17,8 @@ class Widget extends React.Component {
   }
 
   componentWillUnmount() {
-	  clearInterval(this.timerID);
 	  clearInterval(this.getFindMeID);
   }
-
-tick() {
-	this.setState({date: new Date()});
-}
 
 geoFindMe = async () => {
   
@@ -36,8 +27,8 @@ geoFindMe = async () => {
 	lat: null,
 	lng: null
     };
-    options.lat  = position.coords.latitude;
-    options.lng = position.coords.longitude;
+    options.lat  =  position.coords.latitude;
+    options.lng  =  position.coords.longitude;
     this.fetchForecast(options);
   }
 
@@ -60,7 +51,7 @@ fetchForecast = async (options) => {
 	let response = await request.json();
 	console.log(response);
 	if (!!response) {
-		this.setState({ forecastName: response.name, forecast: response.shortForecast, temp: response.temperature, windSpeed: response.windSpeed, windDir: response.windDirection});
+		this.setState({ forecast: response });
 	} else {
 		this.setState({ forecast: response.error });
 	}
@@ -68,17 +59,22 @@ fetchForecast = async (options) => {
 
 
   render() {
+	  if (this.state.forecast.name != undefined) {
 	  return e('div', null, null,
-	  	  e('small', null, `${this.state.date.toLocaleTimeString()}`), 
 		  e('br'), 
-		  e('small', null, `${this.state.forecastName}`),
+		  e('small', null, `${this.state.forecast.name}`),
 		  e('br'), 
-		  e('small', null, `${this.state.forecast}`),
+		  e('small', null, `${this.state.forecast.shortForecast}`),
 		  e('br'), 
-		  e('small', null, `${this.state.temp} F`),
+		  e('small', null, `${this.state.forecast.temperature}`),
+		  e('small', null, `${this.state.forecast.temperatureUnit}`),
 		  e('br'), 
-		  e('small', null, `${this.state.windSpeed} ${this.state.windDir}`),
-	  );
+		  e('small', null, `${this.state.forecast.windSpeed} ${this.state.forecast.windDirection}`),
+		  e('br'), 
+		  e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' }),
+		  );
+	  }
+	  return null;
   }
 }
 
