@@ -42,19 +42,20 @@ class Widget extends React.Component {
       });
       let response = await request.json();
 
-      if (!!response) {
+      if (!!response.forecast) {
         this.setState({
           forecast: response
         });
       } else {
         this.setState({
-          forecast: response.error
+          error: response.error
         });
       }
     });
 
     this.state = {
-      forecast: ''
+      forecast: '',
+      error: null
     };
   }
 
@@ -75,6 +76,8 @@ class Widget extends React.Component {
         }
       }, null), e('small', null, this.state.forecast.temperatureUnit), e('br'), e('small', null, this.state.forecast.windSpeed + ' ' + this.state.forecast.windDirection), e('br') //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' }),
       );
+    } else if (!!this.state.error) {
+      return e('div', null, this.state.error);
     }
 
     return e('div', null, "Fetching...");
