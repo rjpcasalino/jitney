@@ -46,8 +46,10 @@ def forecast():
     r = http.request("GET", url, headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
     if r.data is not None:
         url = json.loads(r.data)
-        r = http.request("GET", url["properties"]["forecast"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"})
-        if r.data is not None:
+        r = http.request("GET", url["properties"]["forecast"], headers={ "User-Agent": "(jitney.cab, contact@jitney.cab)"}, retries=False)
+        if r.status == 200 and r.data is not None:
             data = json.loads(r.data)
             return data["properties"]["periods"][0]
-    return jsonify(error="Error: weather.gov request failed!")
+        elif r.status != 200:
+            return jsonify(error=f"api.weather.gov status: {r.status}")
+        return jsonify(error="server error")
