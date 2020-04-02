@@ -61,17 +61,17 @@ fetchForecast = async (options) => {
 	  if (this.state.forecast.name != undefined) {
 		  return e('div', null, null,
 			  e('br'), 
-			  e('small', null, `${this.state.forecast.name}`),
+			  e('small', null, this.state.forecast.name),
 			  e('br'), 
-			  e('small', null, `${this.state.forecast.shortForecast}`),
+			  e('small', null, this.state.forecast.shortForecast),
 			  e('br'), 
-			  e('small', null, `${this.state.forecast.temperature}`),
+			  e('small', null, this.state.forecast.temperature),
 			  e('small', {dangerouslySetInnerHTML: {
 				  __html: '&deg;'}}, null),
-			  e('small', null, `${this.state.forecast.temperatureUnit}`),
+			  e('small', null, this.state.forecast.temperatureUnit),
 			  e('br'), 
 			  e('small', null, 
-			    `${this.state.forecast.windSpeed} ${this.state.forecast.windDirection}`
+			    this.state.forecast.windSpeed + ' ' + this.state.forecast.windDirection
 			  ),
 			  e('br'), 
 			  //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' }),
