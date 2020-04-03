@@ -95,5 +95,5 @@ class Widget extends React.Component {
   }
 }
 
-const domContainer = document.querySelector("#morning");
+const domContainer = document.querySelector("#widget");
 ReactDOM.render(e(Widget), domContainer);
