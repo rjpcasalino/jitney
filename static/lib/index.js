@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -20,16 +20,16 @@ class Widget extends React.Component {
       };
 
       const error = () => {
-        console.log('Unable to retrieve your location');
+        console.log("Unable to retrieve your location");
         this.setState({
-          forecast: 'Unable to fetch forecast!'
+          forecast: "Unable to fetch forecast!"
         });
       };
 
       if (!navigator.geolocation) {
-        console.log('Geolocation is not supported by your browser');
+        console.log("Geolocation is not supported by your browser");
         this.setState({
-          forecast: 'Geolocation not supported!'
+          forecast: "Geolocation not supported!"
         });
       } else {
         navigator.geolocation.getCurrentPosition(success, error);
@@ -38,7 +38,7 @@ class Widget extends React.Component {
 
     _defineProperty(this, "fetchForecast", async options => {
       let request = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, {
-        mode: 'cors'
+        mode: "cors"
       });
       let response = await request.json();
 
@@ -55,7 +55,7 @@ class Widget extends React.Component {
     });
 
     this.state = {
-      forecast: 'Fetching...',
+      forecast: "Fetching...",
       fecthDone: false,
       error: null
     };
@@ -75,16 +75,15 @@ class Widget extends React.Component {
     let widget;
 
     if (ready) {
-      console.log(this);
-      widget = e('div', null, e('br'), e('small', null, this.state.forecast.name), e('br'), e('small', null, this.state.forecast.shortForecast), e('br'), e('small', null, this.state.forecast.temperature), e('small', {
+      widget = e("div", null, e("br"), e("small", null, this.state.forecast.name), e("br"), e("small", null, this.state.forecast.shortForecast), e("br"), e("small", null, this.state.forecast.temperature), e("small", {
         dangerouslySetInnerHTML: {
-          __html: '&deg;'
+          __html: "&deg;"
         }
-      }, null), e('small', null, this.state.forecast.temperatureUnit), e('br'), e('small', null, `${this.state.forecast.windSpeed} - ${this.state.forecast.windDirection}`), e('br')); //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' })
+      }, null), e("small", null, this.state.forecast.temperatureUnit), e("br"), e("small", null, `${this.state.forecast.windSpeed} - ${this.state.forecast.windDirection}`), e("br")); //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' })
     } else if (!!this.state.error) {
-      widget = e('small', null, this.state.error);
+      widget = e("small", null, this.state.error);
     } else {
-      widget = e('small', null, 'Fetching...');
+      widget = e("small", null, "Fetching...");
     }
 
     return widget;
@@ -92,5 +91,5 @@ class Widget extends React.Component {
 
 }
 
-const domContainer = document.querySelector('#morning');
+const domContainer = document.querySelector("#morning");
 ReactDOM.render(e(Widget), domContainer);
