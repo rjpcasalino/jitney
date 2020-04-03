@@ -42,8 +42,9 @@ class Widget extends React.Component {
       });
       let response = await request.json();
 
-      if (!!response.forecast) {
+      if (!!response) {
         this.setState({
+          fetchDone: true,
           forecast: response
         });
       } else {
@@ -54,7 +55,8 @@ class Widget extends React.Component {
     });
 
     this.state = {
-      forecast: '',
+      forecast: 'Fetching...',
+      fecthDone: false,
       error: null
     };
   }
@@ -69,18 +71,23 @@ class Widget extends React.Component {
   }
 
   render() {
-    if (this.state.forecast.name != undefined) {
-      return e('div', null, null, e('br'), e('small', null, this.state.forecast.name), e('br'), e('small', null, this.state.forecast.shortForecast), e('br'), e('small', null, this.state.forecast.temperature), e('small', {
+    const ready = this.state.fetchDone;
+    let widget;
+
+    if (ready) {
+      console.log(this);
+      widget = e('div', null, e('br'), e('small', null, this.state.forecast.name), e('br'), e('small', null, this.state.forecast.shortForecast), e('br'), e('small', null, this.state.forecast.temperature), e('small', {
         dangerouslySetInnerHTML: {
           __html: '&deg;'
         }
-      }, null), e('small', null, this.state.forecast.temperatureUnit), e('br'), e('small', null, this.state.forecast.windSpeed + ' ' + this.state.forecast.windDirection), e('br') //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' }),
-      );
+      }, null), e('small', null, this.state.forecast.temperatureUnit), e('br'), e('small', null, `${this.state.forecast.windSpeed} - ${this.state.forecast.windDirection}`), e('br')); //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' })
     } else if (!!this.state.error) {
-      return e('div', null, this.state.error);
+      widget = e('small', null, this.state.error);
+    } else {
+      widget = e('small', null, 'Fetching...');
     }
 
-    return e('div', null, "Fetching...");
+    return widget;
   }
 
 }
