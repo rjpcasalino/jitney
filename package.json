@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "build": "babel --plugins @babel/plugin-proposal-class-properties static/src -d static/lib && terser static/lib/index.js -o static/lib/index-min.js -c -m"
+    "build": "babel --plugins @babel/plugin-proposal-class-properties static/src -d static/lib && terser static/lib/index.js -o static/lib/index-min.js -c -m && rm static/lib/index.js"
   },
   "repository": {
     "type": "git",
