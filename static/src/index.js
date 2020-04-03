@@ -5,7 +5,7 @@ const e = React.createElement;
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { forecast: '', error: null }
+    this.state = { forecast: 'Fetching...', fecthDone: false, error: null }
   }
 
   componentDidMount() {
@@ -49,8 +49,8 @@ geoFindMe = async () => {
 fetchForecast = async (options) => { 
         let request = await fetch(`/forecast?lat=${options.lat}&lng=${options.lng}`, { mode: 'cors' });	
 	let response = await request.json();
-	if (!!response.forecast) {
-		this.setState({ forecast: response });
+	if (!!response) {
+		this.setState({ fetchDone: true, forecast: response });
 	} else {
 		this.setState({ error: response.error });
 	}
@@ -58,28 +58,30 @@ fetchForecast = async (options) => {
 
 
   render() {
-	  if (this.state.forecast.name != undefined) {
-		  return e('div', null, null,
-			  e('br'), 
-			  e('small', null, this.state.forecast.name),
-			  e('br'), 
-			  e('small', null, this.state.forecast.shortForecast),
-			  e('br'), 
-			  e('small', null, this.state.forecast.temperature),
-			  e('small', {dangerouslySetInnerHTML: {
-				  __html: '&deg;'}}, null),
-			  e('small', null, this.state.forecast.temperatureUnit),
-			  e('br'), 
-			  e('small', null, 
-			    this.state.forecast.windSpeed + ' ' + this.state.forecast.windDirection
-			  ),
-			  e('br'), 
-			  //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' }),
-			  );
+	  const ready = this.state.fetchDone;
+	  let widget;
+	  if (ready) {
+		  console.log(this);
+		  widget = e('div', null, 
+		  e('br'), 
+		  e('small', null, this.state.forecast.name),
+		  e('br'), 
+		  e('small', null, this.state.forecast.shortForecast),
+		  e('br'), 
+		  e('small', null, this.state.forecast.temperature),
+		  e('small', {dangerouslySetInnerHTML: {
+			  __html: '&deg;'}}, null),
+		  e('small', null, this.state.forecast.temperatureUnit),
+		  e('br'), 
+		  e('small', null, `${this.state.forecast.windSpeed} - ${this.state.forecast.windDirection}`),
+		  e('br'));
+		  //e('img', {src: this.state.forecast.icon, id: 'weather-api-icon' })
 	  } else if (!!this.state.error) {
-		return e('div', null, this.state.error);
+		widget = e('small', null, this.state.error);
+	  } else {
+		widget = e('small', null, 'Fetching...');
 	  }
-	return e('div', null, "Fetching...");
+	  return widget;
   }
 }
 
