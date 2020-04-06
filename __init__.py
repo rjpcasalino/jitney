@@ -10,8 +10,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY=os.environ['APP_KEY'],
-        DATABASE=os.path.join(app.instance_path, os.environ['JITNEY_DB']),
-        DARKSKY_API=os.environ['DARKSKY_API']
+        DATABASE=os.path.join(app.instance_path, os.environ['JITNEY_DB'])
     )
 
     if test_config is None:
