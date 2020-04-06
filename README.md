@@ -10,11 +10,14 @@
 $ python -m venv jitney/
 $ source jitney/bin/activate
 $ (jitney) export FLASK_APP=jitney
-$ (jitney) pip install -r requirements.py
+$ (jitney) cd jitney/ && pip install -r requiremnets.py && npm install && npm run build
+$ (jitnet) cd ..
 $ (jitney) flask init-db
-... do stuff
-$ (jitney) cd jitney && npm install & npm run build
-...ensure you are one dir above jitney itself
 $ (jitney) flask run
 ```
+
+There are some environment variables that will need to be set, namely:
+
+- the database
+- the app secret key
 
